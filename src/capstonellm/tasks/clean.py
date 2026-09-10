@@ -30,7 +30,7 @@ def _read_items(spark: SparkSession, path: str) -> DataFrame:
 def clean(spark: SparkSession, environment: str, tag: str):
     # The output path must match the `s3_path` fixture in tests/test_clean.py,
     # e.g. "cleaned/<user>/<tag>". Set CAPSTONE_USER to your name.
-    user = os.environ.get("CAPSTONE_USER", "changeme")
+    user = os.environ.get("CAPSTONE_USER", "dinisbruno")
 
     input_prefix = f"s3a://{llm_bucket}/input/{tag}"
     logger.info(f"Reading questions and answers for tag '{tag}' from {input_prefix}")
