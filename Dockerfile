@@ -4,4 +4,11 @@ USER 0
 ENV PYSPARK_PYTHON python3
 WORKDIR /opt/spark/work-dir
 
-#TODO add your project code and dependencies to the image
+# 1. Install the Python dependencies first (own layer -> cached across code changes)
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# 2. Copy and install the project itself (deps already installed above)
+COPY pyproject.toml README.md ./
+COPY src/ src/
+RUN pip install --no-cache-dir --no-deps .
