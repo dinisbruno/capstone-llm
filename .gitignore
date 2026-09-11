@@ -10,3 +10,15 @@ plugins
 build
 
 *.egg-info
+
+# Credentials & secrets — keep local, never commit
+.env
+.env.*
+!.env.example
+*.env
+
+# AWS credentials
+.aws/
+aws_credentials
+credentials
+*.pem
