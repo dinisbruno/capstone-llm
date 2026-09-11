@@ -4,11 +4,8 @@ USER 0
 ENV PYSPARK_PYTHON python3
 WORKDIR /opt/spark/work-dir
 
-# 1. Install the Python dependencies first (own layer -> cached across code changes)
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
-
-# 2. Copy and install the project itself (deps already installed above)
+# Add the project code and its dependencies to the image.
+# `pip install .` reads pyproject.toml, so it installs capstonellm + its deps in one step.
 COPY pyproject.toml README.md ./
-COPY src/ src/
-RUN pip install --no-cache-dir --no-deps .
+COPY src/ ./src/
+RUN pip3 install --no-cache-dir .
