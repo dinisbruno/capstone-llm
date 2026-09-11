@@ -1,4 +1,4 @@
 .PHONY: requirements
 
 requirements:
-	uv export --format requirements-txt --no-dev > requirements.txt
+	NO_COLOR=1 uv export --color never --format requirements-txt --no-dev > requirements.txt
